@@ -1,5 +1,7 @@
 package com.chrisarriola.githubrxjava;
 
+import com.chrisarriola.githubrxjava.pojo.GitHubRepo;
+
 import java.util.List;
 import retrofit2.http.GET;
 import retrofit2.http.Path;

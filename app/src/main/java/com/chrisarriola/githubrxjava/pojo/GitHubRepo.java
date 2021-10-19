@@ -1,4 +1,4 @@
-package com.chrisarriola.githubrxjava;
+package com.chrisarriola.githubrxjava.pojo;
 
 /**
  * Created by chris on 6/1/16.
