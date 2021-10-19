@@ -30,27 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         final ListView listView = (ListView) findViewById(R.id.list_view_repos);
         listView.setAdapter(adapter);
-        getStarredRepos("dotrinhdev");
-
-//        final EditText editTextUsername = (EditText) findViewById(R.id.edit_text_username);
-//        final Button buttonSearch = (Button) findViewById(R.id.button_search);
-//        buttonSearch.setOnClickListener(v -> {
-//            final String username = editTextUsername.getText().toString();
-//            if (!TextUtils.isEmpty(username)) {
-//                getStarredRepos(username);
-//            }
-//        });
-    }
-
-    @Override
-    protected void onDestroy() {
-        if (subscription != null && !subscription.isUnsubscribed()) {
-            subscription.unsubscribe();
-        }
-        super.onDestroy();
-    }
-
-    private void getStarredRepos(String username) {
+        String username = "dotrinhdev";
         Observable<List<GitHubRepo>> listObservable = GitHubClient.getInstance().getStarredRepos(username);
         subscription = listObservable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -72,5 +52,13 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("TESSST", "In onError()");
                     }
                 });
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (subscription != null && !subscription.isUnsubscribed()) {
+            subscription.unsubscribe();
+        }
+        super.onDestroy();
     }
 }
